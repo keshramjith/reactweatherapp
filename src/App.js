@@ -18,6 +18,11 @@ const Heading = (props) => {
 }
 
 const Temperature = (props) => {
+	if (props.city === '') {
+		return (
+		<p>Type a city name, and press submit!</p>
+	)
+	}
 	return (
 		<p>Temperature in {props.city} on {props.date}: { props.temp }C</p>
 	)
@@ -41,20 +46,16 @@ function App() {
 	}
 
 	const onClick = (value) => {
-		// setCity(value)
 		return fetchData(apiKey)
 	}
 
 	const fetchData = (apiKey) => {
 		const url = `http://api.openweathermap.org/data/2.5/forecast?q=${input}&units=metric&appid=${apiKey}`;
 		$.get(url, (data) => {
-			// console.log(data.city.name)
 			setTemperature(data.list[0].main.temp)
-			// console.log(typeof data.list[0].dt_txt)
 			setDate(data.list[0].dt_txt)
 			setCity(data.city.name)
 		})
-		.done(console.log('Data fetched.'))
 	}
 	return (
 		<div>

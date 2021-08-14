@@ -1,5 +1,6 @@
 import * as $ from 'jquery';
 import React, { useState } from 'react';
+import file from './apikey.txt';
 
 const Button = (props) => {
 	return (
@@ -35,7 +36,14 @@ const Input = (props) => {
 }
 
 function App() {
-	const apiKey = 'afdafc6c9787459429af21d2c6a9f7a2';
+	let apiKey = '';
+
+	fetch(file)
+		.then(r => r.text())
+		.then(text => {
+			apiKey = text;
+		})
+
 	const [temperature, setTemperature] = useState(0);
 	const [date, setDate] = useState(new Date().toUTCString());
 	const [city, setCity] = useState('')

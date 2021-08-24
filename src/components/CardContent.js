@@ -1,5 +1,5 @@
 import React from 'react';
-import { WiCloudy } from 'weather-icons-react';
+import * as $ from 'jquery';
 
 const Temperature = (props) => {
 	if (props.city === '') {
@@ -9,7 +9,7 @@ const Temperature = (props) => {
 	}
 	return (
 		<div className='d-flex justify-content-center'>
-			<p>{ props.temp }°C</p>
+			<p className='fw-bold fs-3'>{ props.temp }°C</p>
 		</div>
 	)
 }
@@ -20,9 +20,19 @@ const Wind = ({ wind }) => {
 	)
 }
 
-const Weather = ({ weather }) => {
+const WeatherIcon = ({ weatherIconId }) => {
+	if (weatherIconId === '') {
+		return (
+			<img></img>
+		);
+	}
+	const imgsrc = `http://openweathermap.org/img/wn/${weatherIconId}@2x.png`;
+	// $.get(`http://openweathermap.org/img/wn/${weatherIconId}@2x.png`, (data) => {
+	// 	console.log(data);
+	// })
+
 	return (
-		<WiCloudy size={70} color='#000'/>
+		<img src={imgsrc}></img>
 	)
 }
 
@@ -32,12 +42,12 @@ const Date = ({ date }) => {
 	)
 }
 
-const CardContent = ({ city, temp, date, wind, weather }) => {
+const CardContent = ({ city, temp, date, wind, weatherIconId }) => {
 	return (
 		<div className='container'>
 			<div className='row'>
 				<div className='col d-flex justify-content-center'>
-					<Weather weather={ weather }/>
+					<WeatherIcon weatherIconId={ weatherIconId }/>
 				</div>
 			</div>
 			<div className='row'>

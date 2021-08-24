@@ -2,10 +2,12 @@ import React from 'react';
 import CardContent from './CardContent';
 import '../styles/global.css'
 
-const Card = ({ city, temp, date, wind, weather }) => {
+const Card = ({ city, temp, date, wind, weatherIconId }) => {
 	return (
 		<div className='card'>
-			<CardContent city={city} temp={temp} date={date} wind={wind} weather={weather} />
+			<div className='card-body'>
+				<CardContent city={city} temp={temp} date={date} wind={wind} weatherIconId={weatherIconId} />
+			</div>
 		</div>
 	)
 }

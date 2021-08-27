@@ -1,8 +1,8 @@
 import * as $ from 'jquery';
 import React, { useState } from 'react';
 import Card from './components/Card';
-import file from './apikey.txt';
 import 'bootstrap/dist/css/bootstrap.min.css';
+require('dotenv').config();
 
 const Button = (props) => {
 	return (
@@ -32,14 +32,6 @@ const Input = (props) => {
 }
 
 function App() {
-	let apiKey = '';
-
-	fetch(file)
-		.then(r => r.text())
-		.then(text => {
-			apiKey = text;
-		})
-
 	const [temperature, setTemperature] = useState(0);
 	const [date, setDate] = useState(new Date().toUTCString());
 	const [city, setCity] = useState('')
@@ -53,7 +45,7 @@ function App() {
 
 	const onClick = (event) => {
 		event.preventDefault();
-		return fetchData(apiKey)
+		return fetchData(process.env.REACT_APP_API_KEY)
 	}
 
 	const fetchData = (apiKey) => {

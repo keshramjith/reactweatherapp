@@ -16,11 +16,17 @@ const Temperature = ({ city, temp }) => {
   );
 };
 
-const Wind = ({ wind }) => (
-  <p>
-    {`Wind speed ${wind} km/h.`}
-  </p>
-);
+const Wind = ({ wind }) => {
+  if (wind === 0) {
+    return (<p />);
+  }
+
+  return (
+    <p>
+      {`Wind speed ${wind} km/h.`}
+    </p>
+  );
+};
 
 const WeatherIcon = ({ weatherIconId }) => {
   if (weatherIconId === '') {

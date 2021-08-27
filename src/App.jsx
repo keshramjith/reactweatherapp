@@ -1,9 +1,10 @@
 import * as $ from 'jquery';
 import React, { useState } from 'react';
+import dotenv from 'dotenv';
 import Card from './components/Card';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-require('dotenv').config();
+dotenv.config();
 
 const Button = ({ text, onClick }) => (
   <div className='form-group mx-sm-3 mb-2'>
@@ -15,7 +16,7 @@ const Button = ({ text, onClick }) => (
 
 const Heading = ({ text }) => (
   <h1>
-    { text }
+    {text}
   </h1>
 );
 
